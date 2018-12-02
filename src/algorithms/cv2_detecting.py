@@ -95,7 +95,7 @@ class ContourFilter:
     @staticmethod
     def is_shape_ratio_ok(image, contour, threshold):
         if len(contour) < 5:
-            return True
+            return False
         (x,y), (major_axis_length, minor_axis_lenght), angle = cv2.fitEllipse(contour)
         return major_axis_length/minor_axis_lenght < threshold
 

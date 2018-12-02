@@ -1,0 +1,7 @@
+opencv
+scipy
+numpy
+imutils
+scikit-image
+Pillow
+moviepy
