@@ -1,25 +1,6 @@
 showHUD [false,false,false,false,false,false,false,false]
 showHUD [true,true,true,true,true,true,true,true]
 
-//---------------------
-
-
-_result = "extDB3" callExtension "9:ADD_DATABASE:Database";
-
-if(!(_result isEqualTo "[1]")) exitWith {diag_log "extDB3: Error with Database Connection";};
-
-
-_result = "extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:Database:SQL:SQL";
-if(!(_result isEqualTo "[1]")) exitWith {diag_log "extDB3: Error with Database Connection";};
-
-
-_ret = "extDB3" callExtension "0:SQL:SELECT * FROM frames";
-
-
-"extDB3" callExtension "9:ADD_DATABASE:arma3";
-"extDB3" callExtension "9:ADD_DATABASE_PROTOCOL:Database:SQL:SQL";
-"extDB3" callExtension "0:SQL:SELECT * FROM frames";
-
 
 //-----------------------
 
@@ -84,7 +65,7 @@ if(!(_result isEqualTo "[1]")) exitWith {diag_log "extDB3: Error with Database C
 // ----------------------------------------------------------
 
 [] spawn { 
-    _nearestTargets = nearestObjects [player, ["Sheep_random_F"], 10000]; 
+    _nearestTargets = nearestObjects [player, ["Sheep_random_F", "C_man_hunter_1_F", "C_man_polo_1_F"], 10000]; 
     waitUntil {inputAction "pushToTalk" > 0};
     ["refreshPoints", "onEachFrame", 
     {
@@ -107,7 +88,7 @@ if(!(_result isEqualTo "[1]")) exitWith {diag_log "extDB3: Error with Database C
                 _bY = ((_sposY - safeZoneY) / (safeZoneH)) * _screenH; 
             };
 
-            _posArr = [_forEachIndex, _bX, _bY];
+            _posArr = [_forEachIndex, _bX, _bY, typeOf _x];
 
             _positionsArr pushBack _posArr;
             diag_log _positionsArr;
